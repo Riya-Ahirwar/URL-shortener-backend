@@ -10,7 +10,11 @@ async function handleGenerateNewShortURL(req, res){
         redirectURL: body.url,
         visitHistory: [],
     });
-    return res.json({id: shortId});
+    return res.render("home" , {
+        id: shortId,
+        urls: []
+    });
+    // return res.json({id: shortId}); we want it onweb not as a json
 }
 async function handleGetAnalytics(req , res){
     const shortId = req.params.shortId;
