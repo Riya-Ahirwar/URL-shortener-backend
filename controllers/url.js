@@ -9,10 +9,12 @@ async function handleGenerateNewShortURL(req, res){
         shortId: shortId,
         redirectURL: body.url,
         visitHistory: [],
+        createdBy: req.user._id,
     });
     return res.render("home" , {
         id: shortId,
-        urls: []
+        urls: [],
+        error: "Email already registered"
     });
     // return res.json({id: shortId}); we want it onweb not as a json
 }

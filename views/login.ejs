@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+         body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #2ec360, #24a9d5, #2c5364);
+      padding-top: 40px;
+      font-family: "Segoe UI", sans-serif;
+      color: #250250;
+     }
+    h1{
+        margin-left: 320px;
+    }
+       .container {
+      display:flex;
+      flex-direction : column;
+      width: fit-content;   
+      margin: 40px auto; 
+      gap: 40px;         
+      background: #3b71e5;
+      border-radius: 14px;
+      padding: 25px 30px;
+     box-shadow: 0 20px 40px rgb(189, 200, 219);
+     align-items:center; 
+}
+.signup-btn{
+width: fit-content;
+padding: 6px 20px;
+margin: 10px ;
+background-color:#300472;
+color:white;
+border:none;
+cursor: pointer;
+border-radius: 4px;
+margin-left: 100px;
+
+}
+.signup-form {
+  display: flex;
+  flex-direction: column;   /* vertical */
+  gap: 15px;
+  width: 300px;
+  margin: auto;
+}
+
+.signup-form label {
+  display: flex;
+  flex-direction: column;   /* label ke niche input */
+  font-size: 14px;
+}
+
+.signup-form input {
+  padding: 8px;
+  font-size: 14px;
+}
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login HomePage</title>
+</head>
+<body>
+    <h1  >Login</h1>
+    <div class="container">
+        <form class="signup-form" action="/user/login" method="post">
+        
+        <label>Email</label>
+        <input type="text" required name="email"/>
+        <label>Password</label>
+        <input type="text" required name="password"/>
+        <button class="signup-btn" type="submit">SignUp</button>
+    </form>
+    </div>
+    
+</body>
+</html>

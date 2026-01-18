@@ -2,7 +2,10 @@ const express = require("express");
 const {connectToMongoDB} = require('./connections');
 const urlRoute = require('./routes/url');
 const staticRoute = require('./routes/staticRouter');
+const userRoute = require("./routes/user");
 const URL = require('./models/url');
+const cookieParser = require('cookie-parser');
+const { checkForAuthentication,restrictTo } = require("./middleware/auth");
 const path = require("path");
 const app = express();
 const PORT = 2006;
@@ -16,12 +19,10 @@ app.set("views", path.resolve("./views"));
 //middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(checkForAuthentication);
 
-
-
-
-
-
+app.use("/user", userRoute);
 app.use("/", staticRoute);
 
 app.get('/url/:shortId', async(req , res) => {
@@ -46,5 +47,5 @@ app.get('/url/:shortId', async(req , res) => {
 res.redirect(entry.redirectURL);
 
 });
-app.use("/url", urlRoute);
+app.use("/url",restrictTo(["NORMAL","ADMIN"]),  urlRoute);
 app.listen(PORT , () => console.log(`Server Started at Port ${PORT}`));
